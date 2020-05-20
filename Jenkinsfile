@@ -26,5 +26,13 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('Sonar') {
+            steps {
+                sh 'mvn sonar:sonar \
+                    -Dsonar.projectKey=com.mycompany.app:my-app \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=76e5a1ba600f7064dbfa54f494d85bc3ad496eea'
+            }
+        }
     }
 }
